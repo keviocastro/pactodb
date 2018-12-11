@@ -6,6 +6,8 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: pactodb
+      CLOUDBACKUP_USER: myuser
+      CLOUDBACKUP_PASSWORD: secrect
     volumes:
       - ./:/db/
   pgadmin:
