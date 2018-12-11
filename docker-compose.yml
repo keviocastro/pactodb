@@ -1,0 +1,25 @@
+version: '3'
+services:
+  postgres:
+    container_name: postgres
+    build: ./
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: secret
+      CLOUDBACKUP_USER: myuser
+      CLOUDBACKUP_PASSWORD: secrect
+    volumes:
+      - ./:/db/
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: email@domain.com.br
+      PGADMIN_DEFAULT_PASSWORD: secrect
+    restart: always
+    ports:
+      - 81:80
+    depends_on:
+      - postgres
+    links:
+     - postgres
