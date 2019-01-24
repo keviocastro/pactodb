@@ -1,5 +1,5 @@
 # pactodb
-Conjunto de imagens Docker e utilitários em linha de comandos para aplicações Pacto
+Conjunto de imagens Docker e utilitários em linha de comandos para banco de dados de aplicações Pacto Soluções
 
 # Para começar
 
@@ -7,6 +7,5 @@ Conjunto de imagens Docker e utilitários em linha de comandos para aplicações
 git clone git@github.com:keviocastro/pactodb.git
 cd  pactodb
 docker-compose up -d
-docker exec postgres /db/bin/restore.sh OAMD
-docker exec postgres /db/bin/restore.sh 100fit
+docker exec postgres /db/bin/init-db.sh 1000fit
 ```
