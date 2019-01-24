@@ -17,5 +17,5 @@ docker exec -it postgres bash -c '/db/bin/restore.sh 1000fit true'
 
 #### Restaurar um banco individutal fazendo utilizando arquivo local contido no diretório dumps
 ```console
-docker exec -it postgres bash -c '/db/bin/restore.sh 1000fit true'
+docker exec -it postgres bash -c '/db/bin/restore.sh 1000fit'
 ```
