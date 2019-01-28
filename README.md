@@ -7,7 +7,7 @@ Conjunto de imagens Docker e utilitários em linha de comandos para banco de dad
 git clone git@github.com:keviocastro/pactodb.git
 cd  pactodb
 docker-compose up -d
-docker exec postgres /db/bin/init-db.sh 1000fit
+docker exec postgres /db/bin/init.sh 1000fit
 ```
 
 #### Restaurar um banco individutal fazendo download em cloudbackup
