@@ -1,6 +1,8 @@
 # !/bin/bash
 clear
 
+ZW_URL=${ZW_URL:-"http://localhost:8080/ZillyonWeb"}
+
 param_dbname_sufix=$1
 download=$2
 key=$3
@@ -32,7 +34,7 @@ pg_restore -h localhost -U postgres --jobs=64 -d ${dbname} $dump_file_oamd
 psql -h localhost -U postgres -d OAMD -c "delete from empresa where chave = '${key}';"
 psql -h localhost -U postgres -d OAMD -c "insert into empresa (chave, \"nomeBD\") values ('${key}', '${dbname}');"
 psql -h localhost -U postgres -d OAMD -c "update empresa set \"hostBD\" = '$IP_CONTAINER' "
-psql -h localhost -U postgres -d OAMD -c "update empresa set \"robocontrole\" = 'http://localhost:8080/ZillyonWeb'"
+psql -h localhost -U postgres -d OAMD -c "update empresa set \"robocontrole\" = '${ZW_URL}'"
 psql -h localhost -U postgres -d OAMD -c "update empresa set modulos = 'ZW,CRM,CE,FIN,EST,TR,GP,SLC,SBX,GOR'"
 echo "Restore database ${dbname} completed!"
 
