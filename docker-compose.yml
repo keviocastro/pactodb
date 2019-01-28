@@ -8,6 +8,7 @@ services:
       POSTGRES_PASSWORD: secret
       CLOUDBACKUP_USER: myuser
       CLOUDBACKUP_PASSWORD: secrect
+      ZW_URL: http://localhost:8080/ZillyonWeb
     volumes:
       - ./:/db/
   pgadmin:
