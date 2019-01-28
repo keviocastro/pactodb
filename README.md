@@ -10,6 +10,11 @@ docker-compose up -d
 docker exec postgres /db/bin/init.sh 1000fit
 ```
 
+Este comando "docker exec postgres /db/bin/init.sh 1000fit" faz downlod do arquivo de backup do OAMD no serviço de cloudbackups, cria a base de dados e restaura este backup alterando as propriedades necessárias para desenvolvimento local.
+O segundo parametro "1000fit¨ é o nome da base de dados de cliente que será restaurada.
+
+Se você já tem um backup do OAMD em seu computador, é aconselhável coloca-lo no diretório "dumps" para que não seja necessário baixar o bakcup do banco OAMD, pois pode demorar um bom tempo.
+
 #### Restaurar um banco individutal fazendo download em cloudbackup
 ```console
 docker exec -it postgres bash -c '/db/bin/restore.sh 1000fit true'
