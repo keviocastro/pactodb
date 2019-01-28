@@ -20,7 +20,7 @@ docker exec -it postgres bash -c '/db/bin/restore.sh 1000fit true'
 docker exec -it postgres bash -c '/db/bin/restore.sh 1000fit'
 ```
 
-#### Obter ip do banco de dados
+#### Qual IP do postgre?
 
 ```console
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' postgres
