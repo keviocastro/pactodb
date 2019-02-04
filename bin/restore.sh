@@ -1,4 +1,8 @@
 # !/bin/bash
+
+# @todo Check if empty dumps files
+# @todo Check if empty dumps files 
+
 clear
 
 ZW_URL=${ZW_URL:-"http://localhost:8080/ZillyonWeb"}
@@ -7,7 +11,13 @@ param_dbname_sufix=$1
 download=$2
 key=$3
 
-dbname=bdzillyon${param_dbname_sufix}
+if [ $param_dbname_sufix == "OAMD" ] || [ $param_dbname_sufix == "oamd" ]; 
+then
+    dbname=$param_dbname_sufix
+else
+    dbname=bdzillyon${param_dbname_sufix}
+fi
+
 root_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 dumps_path="$root_path/../dumps"
 dump_file_oamd=${dumps_path}/${dbname}.backup
@@ -30,6 +40,7 @@ psql -h localhost -U postgres -c "drop database if exists \"${dbname}\";"
 psql -h localhost -U postgres -c "create database \"${dbname}\";"
 
 echo "Start restore database ${dbname} with $dump_file_oamd"
+echo pg_restore -h localhost -U postgres --jobs=64 -d ${dbname} $dump_file_oamd
 pg_restore -h localhost -U postgres --jobs=64 -d ${dbname} $dump_file_oamd
 psql -h localhost -U postgres -d OAMD -c "delete from empresa where chave = '${key}';"
 psql -h localhost -U postgres -d OAMD -c "insert into empresa (chave, \"nomeBD\") values ('${key}', '${dbname}');"

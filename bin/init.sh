@@ -4,10 +4,10 @@ OAMD_FILE_BAKCUP=$BIN_PATH/../dumps/OAMD.backup
 SUFIX_DB_NAME=${1:-"1000fit"}
 SUFIX_DB_NAME="${SUFIX_DB_NAME,,}"
 
-if [ ! -f "$OAMD_FILE_BAKCUP" ];
+if [ ! -s "$OAMD_FILE_BAKCUP" ];
 then
     $BIN_PATH/download.sh OAMD
 fi
 
-$BIN_PATH/restore-oamds.sh
+$BIN_PATH/restore.sh OAMD
 $BIN_PATH/restore.sh $SUFIX_DB_NAME true
