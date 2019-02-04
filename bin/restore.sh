@@ -40,7 +40,7 @@ psql -h localhost -U postgres -c "drop database if exists \"${dbname}\";"
 psql -h localhost -U postgres -c "create database \"${dbname}\";"
 
 echo "Start restore database ${dbname} with $dump_file_oamd"
-echo pg_restore -h localhost -U postgres --jobs=64 -d ${dbname} $dump_file_oamd
+
 pg_restore -h localhost -U postgres --jobs=64 -d ${dbname} $dump_file_oamd
 psql -h localhost -U postgres -d OAMD -c "delete from empresa where chave = '${key}';"
 psql -h localhost -U postgres -d OAMD -c "insert into empresa (chave, \"nomeBD\") values ('${key}', '${dbname}');"
